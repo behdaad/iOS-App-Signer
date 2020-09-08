@@ -24,7 +24,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
     @IBOutlet var appShortVersion: NSTextField!
     @IBOutlet var appVersion: NSTextField!
     @IBOutlet var ignorePluginsCheckbox: NSButton!
-    @IBOutlet var noGetTaskAllowCheckbox: NSButton!
+//    @IBOutlet var noGetTaskAllowCheckbox: NSButton!
 
     
     //MARK: Variables
@@ -569,6 +569,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         var inputFile : String = ""
         var signingCertificate : String?
         var newApplicationID : String = ""
+//        var newBundleID: String = ""
         var newDisplayName : String = ""
         var newShortVersion : String = ""
         var newVersion : String = ""
@@ -582,7 +583,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
             newShortVersion = self.appShortVersion.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             newVersion = self.appVersion.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             shouldCheckPlugins = ignorePluginsCheckbox.state == .off
-            shouldSkipGetTaskAllow = noGetTaskAllowCheckbox.state == .on
+            shouldSkipGetTaskAllow = false
         }
 
         var provisioningFile = self.profileFilename
@@ -876,10 +877,10 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                             setStatus("Unable to read entitlements from provisioning profile")
                             warnings += 1
                         }
-                        if profile.appID != "*" && (newApplicationID != "" && newApplicationID != profile.appID) {
-                            setStatus("Unable to change App ID to \(newApplicationID), provisioning profile won't allow it")
-                            cleanup(tempFolder); return
-                        }
+//                        if profile.appID != "*" && (newApplicationID != "" && newApplicationID != profile.appID) {
+//                            setStatus("Unable to change App ID to \(newApplicationID), provisioning profile won't allow it")
+//                            cleanup(tempFolder); return
+//                        }
                     } else {
                         setStatus("Unable to parse provisioning profile, it may be corrupt")
                         warnings += 1
@@ -893,45 +894,45 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 }
                 
                 //MARK: Change Application ID
-                if newApplicationID != "" {
-                    
-                    if let oldAppID = getPlistKey(appBundleInfoPlist, keyName: "CFBundleIdentifier") {
-                        func changeAppexID(_ appexFile: String){
-                            guard allowRecursiveSearchAt(appexFile.stringByDeletingLastPathComponent) else {
-                                return
-                            }
-
-                            let appexPlist = appexFile.stringByAppendingPathComponent("Info.plist")
-                            if let appexBundleID = getPlistKey(appexPlist, keyName: "CFBundleIdentifier"){
-                                let newAppexID = "\(newApplicationID)\(appexBundleID.substring(from: oldAppID.endIndex))"
-                                setStatus("Changing \(appexFile) id to \(newAppexID)")
-                                _ = setPlistKey(appexPlist, keyName: "CFBundleIdentifier", value: newAppexID)
-                            }
-                            if Process().execute(defaultsPath, workingDirectory: nil, arguments: ["read", appexPlist,"WKCompanionAppBundleIdentifier"]).status == 0 {
-                                _ = setPlistKey(appexPlist, keyName: "WKCompanionAppBundleIdentifier", value: newApplicationID)
-                            }
-                            // 修复微信改bundleid后安装失败问题
-                            let pluginInfoPlist = NSMutableDictionary(contentsOfFile: appexPlist)
-                            if let dictionaryArray = pluginInfoPlist?["NSExtension"] as? [String:AnyObject],
-                                let attributes : NSMutableDictionary = dictionaryArray["NSExtensionAttributes"] as? NSMutableDictionary,
-                                let wkAppBundleIdentifier = attributes["WKAppBundleIdentifier"] as? String{
-                                let newAppesID = wkAppBundleIdentifier.replacingOccurrences(of:oldAppID, with:newApplicationID);
-                                attributes["WKAppBundleIdentifier"] = newAppesID;
-                                pluginInfoPlist!.write(toFile: appexPlist, atomically: true);
-                            }
-                            recursiveDirectorySearch(appexFile, extensions: ["app"], found: changeAppexID)
-                        }
-                        recursiveDirectorySearch(appBundlePath, extensions: ["appex"], found: changeAppexID)
-                    }
-                    
-                    setStatus("Changing App ID to \(newApplicationID)")
-                    let IDChangeTask = setPlistKey(appBundleInfoPlist, keyName: "CFBundleIdentifier", value: newApplicationID)
-                    if IDChangeTask.status != 0 {
-                        setStatus("Error changing App ID")
-                        Log.write(IDChangeTask.output)
-                        cleanup(tempFolder); return
-                    }
-                }
+//                if newApplicationID != "" {
+//                    
+//                    if let oldAppID = getPlistKey(appBundleInfoPlist, keyName: "CFBundleIdentifier") {
+//                        func changeAppexID(_ appexFile: String){
+//                            guard allowRecursiveSearchAt(appexFile.stringByDeletingLastPathComponent) else {
+//                                return
+//                            }
+//
+//                            let appexPlist = appexFile.stringByAppendingPathComponent("Info.plist")
+//                            if let appexBundleID = getPlistKey(appexPlist, keyName: "CFBundleIdentifier"){
+//                                let newAppexID = "\(newApplicationID)\(appexBundleID.substring(from: oldAppID.endIndex))"
+//                                setStatus("Changing \(appexFile) id to \(newAppexID)")
+//                                _ = setPlistKey(appexPlist, keyName: "CFBundleIdentifier", value: newAppexID)
+//                            }
+//                            if Process().execute(defaultsPath, workingDirectory: nil, arguments: ["read", appexPlist,"WKCompanionAppBundleIdentifier"]).status == 0 {
+//                                _ = setPlistKey(appexPlist, keyName: "WKCompanionAppBundleIdentifier", value: newApplicationID)
+//                            }
+//                            // 修复微信改bundleid后安装失败问题
+//                            let pluginInfoPlist = NSMutableDictionary(contentsOfFile: appexPlist)
+//                            if let dictionaryArray = pluginInfoPlist?["NSExtension"] as? [String:AnyObject],
+//                                let attributes : NSMutableDictionary = dictionaryArray["NSExtensionAttributes"] as? NSMutableDictionary,
+//                                let wkAppBundleIdentifier = attributes["WKAppBundleIdentifier"] as? String{
+//                                let newAppesID = wkAppBundleIdentifier.replacingOccurrences(of:oldAppID, with:newApplicationID);
+//                                attributes["WKAppBundleIdentifier"] = newAppesID;
+//                                pluginInfoPlist!.write(toFile: appexPlist, atomically: true);
+//                            }
+//                            recursiveDirectorySearch(appexFile, extensions: ["app"], found: changeAppexID)
+//                        }
+//                        recursiveDirectorySearch(appBundlePath, extensions: ["appex"], found: changeAppexID)
+//                    }
+//                    
+//                    setStatus("Changing App ID to \(newApplicationID)")
+//                    let IDChangeTask = setPlistKey(appBundleInfoPlist, keyName: "CFBundleIdentifier", value: newApplicationID)
+//                    if IDChangeTask.status != 0 {
+//                        setStatus("Error changing App ID")
+//                        Log.write(IDChangeTask.output)
+//                        cleanup(tempFolder); return
+//                    }
+//                }
                 
                 //MARK: Change Display Name
                 if newDisplayName != "" {
@@ -940,6 +941,17 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                     if displayNameChangeTask.status != 0 {
                         setStatus("Error changing display name")
                         Log.write(displayNameChangeTask.output)
+                        cleanup(tempFolder); return
+                    }
+                }
+                
+                //MARK: Change Bundle ID
+                if newApplicationID != "" {
+                    setStatus("Changing Bundle ID to \(newApplicationID))")
+                    let bundleIDChangeTask = Process().execute(defaultsPath, workingDirectory: nil, arguments: ["write", appBundleInfoPlist, "CFBundleIdentifier", newApplicationID])
+                    if bundleIDChangeTask.status != 0 {
+                        setStatus("Error changing bundle ID")
+                        Log.write(bundleIDChangeTask.output)
                         cleanup(tempFolder); return
                     }
                 }
@@ -965,7 +977,6 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                         cleanup(tempFolder); return
                     }
                 }
-                
                 
                 func generateFileSignFunc(_ payloadDirectory:String, entitlementsPath: String, signingCertificate: String)->((_ file:String)->Void){
                     
@@ -1151,7 +1162,5 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 NSWorkspace.shared.activateFileViewerSelecting([URL(fileURLWithPath: outputFile)])
             }
         }
-    }
-    
+    }    
 }
-
