@@ -25,7 +25,8 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
     @IBOutlet var appVersion: NSTextField!
     @IBOutlet var ignorePluginsCheckbox: NSButton!
 //    @IBOutlet var noGetTaskAllowCheckbox: NSButton!
-
+    @IBOutlet var configFileTextField: NSTextField!
+    @IBOutlet var configFileBrowseButton: NSButton!
     
     //MARK: Variables
     var provisioningProfiles:[ProvisioningProfile] = []
@@ -58,6 +59,8 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
     //MARK: Drag / Drop
     static let urlFileTypes = ["ipa", "deb"]
     static let allowedFileTypes = urlFileTypes + ["app", "appex", "xcarchive"]
+    static let allowedConfigFileTypes = ["plist"]
+    
     static let fileTypes = allowedFileTypes + ["mobileprovision"]
     @objc var fileTypeIsOk = false
     
@@ -261,7 +264,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         }
         let rawResult = securityResult.output.components(separatedBy: "\"")
         
-        var index: Int
+//        var index: Int
         
         for index in stride(from: 0, through: rawResult.count - 2, by: 2) {
             if !(rawResult.count - 1 < index + 1) {
@@ -548,7 +551,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
             //MARK: Get output filename
             let saveDialog = NSSavePanel()
             saveDialog.allowedFileTypes = ["ipa"]
-            saveDialog.nameFieldStringValue = inputFile.lastPathComponent.stringByDeletingPathExtension
+            saveDialog.nameFieldStringValue = appShortVersion.stringValue + " (" + appVersion.stringValue + ")"
             if saveDialog.runModal().rawValue == NSFileHandlingPanelOKButton {
                 outputFile = saveDialog.url!.path
             } else {
@@ -562,8 +565,6 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
     }
     
     @objc func signingThread(){
-        
-        
         //MARK: Set up variables
         var warnings = 0
         var inputFile : String = ""
@@ -578,15 +579,27 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
             downloadProgress.isHidden = true
             inputFile = self.InputFileText.stringValue
             signingCertificate = self.CodesigningCertsPopup.selectedItem?.title
-            newApplicationID = self.NewApplicationIDTextField.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             newDisplayName = self.appDisplayName.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            newShortVersion = self.appShortVersion.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            newVersion = self.appVersion.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            
+//            let file = fileManager.contents(atPath: configFileTextField.stringValue)
+//            NSDictionary(contentsOfFile: <#T##String#>)
+            
+//            let examplePListURL = URL(fileURLWithPath: configFileTextField.stringValue)
+            if let examplePList = NSDictionary(contentsOfFile: configFileTextField.stringValue) {
+                newApplicationID = examplePList["CFBundleIdentifier"] as? String ?? ""
+                newShortVersion = examplePList["CFBundleShortVersionString"] as? String ?? ""
+                newVersion = examplePList["CFBundleVersion"] as? String ?? ""
+            } else {
+                newApplicationID = self.NewApplicationIDTextField.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                newShortVersion = self.appShortVersion.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                newVersion = self.appVersion.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            }
+            
             shouldCheckPlugins = ignorePluginsCheckbox.state == .off
             shouldSkipGetTaskAllow = false
         }
 
-        var provisioningFile = self.profileFilename
+        let provisioningFile = self.profileFilename
         let inputStartsWithHTTP = inputFile.lowercased().substring(to: inputFile.index(inputFile.startIndex, offsetBy: 4)) == "http"
         var eggCount: Int = 0
         var continueSigning: Bool? = nil
@@ -1136,10 +1149,19 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         openDialog.canChooseDirectories = false
         openDialog.allowsMultipleSelection = false
         openDialog.allowsOtherFileTypes = false
-        openDialog.allowedFileTypes = MainView.allowedFileTypes + MainView.allowedFileTypes.map({ $0.uppercased() })
+        
+        var textField: NSTextField!
+        if let button = sender as? NSButton, button == BrowseButton {
+            openDialog.allowedFileTypes = MainView.allowedFileTypes + MainView.allowedFileTypes.map({ $0.uppercased() })
+            textField = InputFileText
+        } else {
+            openDialog.allowedFileTypes = MainView.allowedConfigFileTypes + MainView.allowedConfigFileTypes.map { $0.uppercased() }
+            textField = configFileTextField
+        }
+        
         openDialog.runModal()
         if let filename = openDialog.urls.first {
-            InputFileText.stringValue = filename.path
+            textField.stringValue = filename.path
         }
     }
     @IBAction func chooseSigningCertificate(_ sender: NSPopUpButton) {

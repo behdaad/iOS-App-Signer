@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A1F001A254778CA00C48649 /* Example.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A1F0019254778CA00C48649 /* Example.plist */; };
 		652408CC1BE743D4006FA4C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652408CB1BE743D4006FA4C6 /* AppDelegate.swift */; };
 		652408CE1BE743D4006FA4C6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652408CD1BE743D4006FA4C6 /* MainView.swift */; };
 		652408D01BE743D4006FA4C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 652408CF1BE743D4006FA4C6 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A1F0019254778CA00C48649 /* Example.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Example.plist; sourceTree = "<group>"; };
 		652408C81BE743D4006FA4C6 /* iOS App Signer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS App Signer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		652408CB1BE743D4006FA4C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		652408CD1BE743D4006FA4C6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				65B24E0D1BECB30D005D2068 /* AppSigner.entitlements */,
 				652408CB1BE743D4006FA4C6 /* AppDelegate.swift */,
 				652408CD1BE743D4006FA4C6 /* MainView.swift */,
+				1A1F0019254778CA00C48649 /* Example.plist */,
 				652408CF1BE743D4006FA4C6 /* Assets.xcassets */,
 				652408D41BE743D4006FA4C6 /* Info.plist */,
 			);
@@ -234,6 +237,7 @@
 				65CED3A32D8B6F3E00E9185B /* fix-wwdr.sh in Resources */,
 				65311EB61BF88EB800516EFD /* Application.xib in Resources */,
 				652408D01BE743D4006FA4C6 /* Assets.xcassets in Resources */,
+				1A1F001A254778CA00C48649 /* Example.plist in Resources */,
 				659734941C65A14300383D2D /* Updates.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
