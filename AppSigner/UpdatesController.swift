@@ -27,7 +27,7 @@ class UpdatesController: NSWindowController {
         forceShow: Bool = false,
         callbackFunc: ((_ status: Bool, _ data: Data?, _ response: URLResponse?, _ error: Error?)->Void)? = nil
     ) {
-        let requestURL: URL = URL(string: "https://api.github.com/repos/DanTheMan827/ios-app-signer/releases")!
+        let requestURL: URL = URL(string: "https://api.github.com/repos/behdaad/ios-app-signer/releases")!
         let urlRequest = URLRequest(url: requestURL)
         
         let configuration = URLSessionConfiguration.default

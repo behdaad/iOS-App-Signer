@@ -340,16 +340,16 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="550" height="242"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="contentRect" x="196" y="240" width="629" height="242"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <value key="minSize" type="size" width="550" height="242"/>
             <value key="maxSize" type="size" width="9999" height="242"/>
             <view key="contentView" id="se5-gp-TjO" customClass="MainView" customModule="iOS_App_Signer" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="550" height="242"/>
+                <rect key="frame" x="0.0" y="0.0" width="629" height="242"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YSK-IJ-CeM">
-                        <rect key="frame" x="136" y="126" width="406" height="21"/>
+                        <rect key="frame" x="136" y="126" width="485" height="21"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="This is where you would change the bundle identifier" drawsBackground="YES" id="395-ue-2J0">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -366,7 +366,7 @@
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tPN-Hd-sKi">
                         <rect key="frame" x="6" y="129" width="124" height="16"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="New Bundle ID:" id="WPy-tB-bJ4">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Bundle ID:" id="WPy-tB-bJ4">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -381,7 +381,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q7q-HU-46D">
-                        <rect key="frame" x="478" y="32" width="70" height="32"/>
+                        <rect key="frame" x="557" y="32" width="70" height="32"/>
                         <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ox8-ir-pSO">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -391,7 +391,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jID-Ce-koR">
-                        <rect key="frame" x="463" y="206" width="85" height="32"/>
+                        <rect key="frame" x="542" y="206" width="85" height="32"/>
                         <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G75-5L-8SZ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -401,7 +401,7 @@
                         </connections>
                     </button>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aVt-Sy-tta">
-                        <rect key="frame" x="134" y="181" width="411" height="25"/>
+                        <rect key="frame" x="134" y="181" width="490" height="25"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Yf9-38-1CN">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -418,7 +418,7 @@
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4SO-6J-jzo">
-                        <rect key="frame" x="134" y="152" width="411" height="25"/>
+                        <rect key="frame" x="134" y="152" width="490" height="25"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="xup-Rd-N3A">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -443,7 +443,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GdX-jd-F08">
-                        <rect key="frame" x="136" y="213" width="325" height="21"/>
+                        <rect key="frame" x="136" y="213" width="404" height="21"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="File path or URL accepted" drawsBackground="YES" usesSingleLineMode="YES" id="fri-IK-93r">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -451,7 +451,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qJN-16-XSx">
-                        <rect key="frame" x="136" y="97" width="406" height="21"/>
+                        <rect key="frame" x="136" y="97" width="485" height="21"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="This changes the app title on the home screen" drawsBackground="YES" id="KLQ-qo-m8y">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -475,7 +475,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="50" translatesAutoresizingMaskIntoConstraints="NO" id="ldw-vd-vcX">
-                        <rect key="frame" x="4" y="4" width="544" height="16"/>
+                        <rect key="frame" x="4" y="4" width="623" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingMiddle" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Downloading file" usesSingleLineMode="YES" id="4uJ-DO-E2U">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -483,10 +483,10 @@
                         </textFieldCell>
                     </textField>
                     <progressIndicator hidden="YES" wantsLayer="YES" maxValue="100" displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="9a5-Oe-N79">
-                        <rect key="frame" x="120" y="2" width="424" height="20"/>
+                        <rect key="frame" x="120" y="2" width="503" height="20"/>
                     </progressIndicator>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w01-jO-HKq">
-                        <rect key="frame" x="0.0" y="-1" width="550" height="25"/>
+                        <rect key="frame" x="0.0" y="-1" width="629" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="jA9-yC-HUO"/>
                         </constraints>
@@ -500,30 +500,30 @@
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ciM-lE-ANv">
                         <rect key="frame" x="6" y="71" width="124" height="16"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App Version:" id="j50-ne-bw4">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Build Number:" id="j50-ne-bw4">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QZI-Qs-VwV">
-                        <rect key="frame" x="136" y="68" width="254" height="21"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="This changes the app version number" drawsBackground="YES" id="2PE-H9-BWc">
+                        <rect key="frame" x="136" y="68" width="333" height="21"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="This changes the app build number" drawsBackground="YES" id="2PE-H9-BWc">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button toolTip="Don't resign extension bundles as they might contain their own code signature" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-fM-ZOR">
-                        <rect key="frame" x="396" y="70" width="148" height="18"/>
+                        <rect key="frame" x="475" y="70" width="148" height="18"/>
                         <buttonCell key="cell" type="check" title="Ignore PlugIns folder" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Nw2-Zf-Zab">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XPd-ts-72C">
-                        <rect key="frame" x="136" y="39" width="340" height="21"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="This changes the app short version number" drawsBackground="YES" id="Y13-6l-O4U">
+                        <rect key="frame" x="136" y="39" width="419" height="21"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="This changes the app version string" drawsBackground="YES" id="Y13-6l-O4U">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -531,7 +531,7 @@
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8r-Py-WHA">
                         <rect key="frame" x="6" y="42" width="124" height="16"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="App Short Version:" id="ksF-cb-1aW">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Version String:" id="ksF-cb-1aW">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -615,7 +615,7 @@
                 </connections>
             </view>
             <contentBorderThickness minY="25"/>
-            <point key="canvasLocation" x="301" y="352"/>
+            <point key="canvasLocation" x="333.5" y="304"/>
         </window>
     </objects>
 </document>
