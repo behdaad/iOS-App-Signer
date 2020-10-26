@@ -313,8 +313,8 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
             }
             if profile.appID.firstIndex(of: "*") == nil {
                 // Not a wildcard profile
-                NewApplicationIDTextField.stringValue = profile.appID
-                NewApplicationIDTextField.isEnabled = false
+//                NewApplicationIDTextField.stringValue = profile.appID
+//                NewApplicationIDTextField.isEnabled = false
             } else {
                 // Wildcard profile
                 if NewApplicationIDTextField.isEnabled == false {
