@@ -13,11 +13,13 @@ import Foundation
     let newApplicationID: String
     let newShortVersion: String
     let newVersion: String
+    let store: String
     
-    init(newApplicationID: String, newShortVersion: String, newVersion: String) {
+    init(newApplicationID: String, newShortVersion: String, newVersion: String, store: String) {
         self.newApplicationID = newApplicationID
         self.newShortVersion = newShortVersion
         self.newVersion = newVersion
+        self.store = store
     }
 }
 
@@ -44,7 +46,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
     @objc var profileFilename: String?
     @objc var ReEnableNewApplicationID = false
     @objc var PreviousNewApplicationID = ""
-//    @objc var outputFile: String?
+    //    @objc var outputFile: String?
     var startSize: CGFloat?
     @objc var NibLoaded = false
     var shouldCheckPlugins: Bool!
@@ -554,46 +556,42 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
     }
     
     @objc func startSigning() {
-        //        let inputFile = InputFileText.stringValue
-        //        
-        //        if inputFile.pathExtension.lowercased() == "appex" {
-        //            outputFile = inputFile
-        //        } else {
-        //            //MARK: Get output filename
-        //            let saveDialog = NSSavePanel()
-        //            saveDialog.allowedFileTypes = ["ipa"]
-        //            saveDialog.nameFieldStringValue = appShortVersion.stringValue + " (" + appVersion.stringValue + ")"
-        //            if saveDialog.runModal().rawValue == NSFileHandlingPanelOKButton {
-        //                outputFile = saveDialog.url!.path
-        //            } else {
-        //                outputFile = nil
-        //            }
-        //        }
-        //        
-        //        if outputFile != nil {
         controlsEnabled(false)
-        
-        
         
         let newApplicationID: String
         let newShortVersion: String
         let newVersion: String
         
+        var appInfoArray = [AppInfo]()
+        
         if let configPList = NSDictionary(contentsOfFile: configFileTextField.stringValue) {
-            newApplicationID = configPList["CFBundleIdentifier"] as? String ?? ""
-            newShortVersion = configPList["CFBundleShortVersionString"] as? String ?? ""
-            newVersion = configPList["CFBundleVersion"] as? String ?? ""
+            let baseVersion = configPList["CFBundleShortVersionString"] as! String
+            let versionComponents = baseVersion.split(separator: ".")
+            let majorDotMinorDotString = versionComponents[0] + "." + versionComponents[1] + "."
+            
+            var patchNumber = Int(versionComponents[2])!
+            var buildNumber = Int(configPList["CFBundleVersion"] as! String)!
+            
+            let storesDictionary = configPList["Stores"] as! [String: String]
+            for (store, bundleID) in storesDictionary {
+                let newShortVersion = majorDotMinorDotString + "\(patchNumber)"
+                let appInfo = AppInfo(newApplicationID: bundleID, newShortVersion: newShortVersion, newVersion: "\(buildNumber)", store: store)
+                appInfoArray.append(appInfo)
+                patchNumber += 1
+                buildNumber += 1
+            }
         } else {
             newApplicationID = self.NewApplicationIDTextField.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             newShortVersion = self.appShortVersion.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             newVersion = self.appVersion.stringValue.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            
+            let appInfo = AppInfo(newApplicationID: newApplicationID, newShortVersion: newShortVersion, newVersion: newVersion, store: "")
+            appInfoArray.append(appInfo)
         }
         
-        let appInfo = AppInfo(newApplicationID: newApplicationID, newShortVersion: newShortVersion, newVersion: newVersion)
-        
-        Thread.detachNewThreadSelector(#selector(self.signingThread(appInfo:)), toTarget: self, with: appInfo)
-        
-        //        }
+        for appInfo in appInfoArray {
+            Thread.detachNewThreadSelector(#selector(self.signingThread(appInfo:)), toTarget: self, with: appInfo)
+        }
     }
     
     @objc func signingThread(appInfo: AppInfo) {
@@ -663,35 +661,34 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         Log.write("Payload directory: \(payloadDirectory)")
         
         //MARK: Codesign Test
-        
-                DispatchQueue.main.async(execute: {
-                    if let codesignResult = self.testSigning(signingCertificate!, tempFolder: tempFolder) {
-                        if codesignResult == false {
-                            let alert = NSAlert()
-                            alert.messageText = "Codesigning error"
-                            alert.addButton(withTitle: "Yes")
-                            alert.addButton(withTitle: "No")
-                            alert.informativeText = "You appear to have a error with your codesigning certificate, do you want me to try and fix the problem?"
-                            let response = alert.runModal()
-                            if response == NSApplication.ModalResponse.alertFirstButtonReturn {
-                                iASShared.fixSigning(tempFolder)
-                                if self.testSigning(signingCertificate!, tempFolder: tempFolder) == false {
-                                    let errorAlert = NSAlert()
-                                    errorAlert.messageText = "Unable to Fix"
-                                    errorAlert.addButton(withTitle: "OK")
-                                    errorAlert.informativeText = "I was unable to automatically resolve your codesigning issue ☹\n\nIf you have previously trusted your certificate using Keychain, please set the Trust setting back to the system default."
-                                    errorAlert.runModal()
-                                    continueSigning = false
-                                    return
-                                }
-                            } else {
-                                continueSigning = false
-                                return
-                            }
+        DispatchQueue.main.async(execute: {
+            if let codesignResult = self.testSigning(signingCertificate!, tempFolder: tempFolder) {
+                if codesignResult == false {
+                    let alert = NSAlert()
+                    alert.messageText = "Codesigning error"
+                    alert.addButton(withTitle: "Yes")
+                    alert.addButton(withTitle: "No")
+                    alert.informativeText = "You appear to have a error with your codesigning certificate, do you want me to try and fix the problem?"
+                    let response = alert.runModal()
+                    if response == NSApplication.ModalResponse.alertFirstButtonReturn {
+                        iASShared.fixSigning(tempFolder)
+                        if self.testSigning(signingCertificate!, tempFolder: tempFolder) == false {
+                            let errorAlert = NSAlert()
+                            errorAlert.messageText = "Unable to Fix"
+                            errorAlert.addButton(withTitle: "OK")
+                            errorAlert.informativeText = "I was unable to automatically resolve your codesigning issue ☹\n\nIf you have previously trusted your certificate using Keychain, please set the Trust setting back to the system default."
+                            errorAlert.runModal()
+                            continueSigning = false
+                            return
                         }
+                    } else {
+                        continueSigning = false
+                        return
                     }
-                    continueSigning = true
-                })
+                }
+            }
+            continueSigning = true
+        })
         
         
         while true {
@@ -750,47 +747,47 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         
         //MARK: Process input file
         switch(inputFile.pathExtension.lowercased()) {
-//        case "deb":
-//            //MARK: --Unpack deb
-//            let debPath = tempFolder.stringByAppendingPathComponent("deb")
-//            do {
-//                try fileManager.createDirectory(atPath: debPath, withIntermediateDirectories: true, attributes: nil)
-//                try fileManager.createDirectory(atPath: workingDirectory, withIntermediateDirectories: true, attributes: nil)
-//                setStatus("Extracting deb file")
-//                let debTask = Process().execute(arPath, workingDirectory: debPath, arguments: ["-x", inputFile])
-//                Log.write(debTask.output)
-//                if debTask.status != 0 {
-//                    setStatus("Error processing deb file")
-//                    cleanup(tempFolder); return
-//                }
-//                
-//                var tarUnpacked = false
-//                for tarFormat in ["tar", "tar.gz", "tar.bz2", "tar.lzma", "tar.xz"] {
-//                    let dataPath = debPath.stringByAppendingPathComponent("data.\(tarFormat)")
-//                    if fileManager.fileExists(atPath: dataPath){
-//                        setStatus("Unpacking data.\(tarFormat)")
-//                        let tarTask = Process().execute(tarPath, workingDirectory: debPath, arguments: ["-xf",dataPath])
-//                        Log.write(tarTask.output)
-//                        if tarTask.status == 0 {
-//                            tarUnpacked = true
-//                        }
-//                        break
-//                    }
-//                }
-//                if !tarUnpacked {
-//                    setStatus("Error unpacking data.tar")
-//                    cleanup(tempFolder); return
-//                }
-//                
-//                var sourcePath = debPath.stringByAppendingPathComponent("Applications")
-//                if fileManager.fileExists(atPath: debPath.stringByAppendingPathComponent("var/mobile/Applications")){
-//                    sourcePath = debPath.stringByAppendingPathComponent("var/mobile/Applications")
-//                }
-//                try fileManager.moveItem(atPath: sourcePath, toPath: payloadDirectory) 
-//            } catch {
-//                setStatus("Error processing deb file")
-//                cleanup(tempFolder); return
-//            }
+        //        case "deb":
+        //            //MARK: --Unpack deb
+        //            let debPath = tempFolder.stringByAppendingPathComponent("deb")
+        //            do {
+        //                try fileManager.createDirectory(atPath: debPath, withIntermediateDirectories: true, attributes: nil)
+        //                try fileManager.createDirectory(atPath: workingDirectory, withIntermediateDirectories: true, attributes: nil)
+        //                setStatus("Extracting deb file")
+        //                let debTask = Process().execute(arPath, workingDirectory: debPath, arguments: ["-x", inputFile])
+        //                Log.write(debTask.output)
+        //                if debTask.status != 0 {
+        //                    setStatus("Error processing deb file")
+        //                    cleanup(tempFolder); return
+        //                }
+        //                
+        //                var tarUnpacked = false
+        //                for tarFormat in ["tar", "tar.gz", "tar.bz2", "tar.lzma", "tar.xz"] {
+        //                    let dataPath = debPath.stringByAppendingPathComponent("data.\(tarFormat)")
+        //                    if fileManager.fileExists(atPath: dataPath){
+        //                        setStatus("Unpacking data.\(tarFormat)")
+        //                        let tarTask = Process().execute(tarPath, workingDirectory: debPath, arguments: ["-xf",dataPath])
+        //                        Log.write(tarTask.output)
+        //                        if tarTask.status == 0 {
+        //                            tarUnpacked = true
+        //                        }
+        //                        break
+        //                    }
+        //                }
+        //                if !tarUnpacked {
+        //                    setStatus("Error unpacking data.tar")
+        //                    cleanup(tempFolder); return
+        //                }
+        //                
+        //                var sourcePath = debPath.stringByAppendingPathComponent("Applications")
+        //                if fileManager.fileExists(atPath: debPath.stringByAppendingPathComponent("var/mobile/Applications")){
+        //                    sourcePath = debPath.stringByAppendingPathComponent("var/mobile/Applications")
+        //                }
+        //                try fileManager.moveItem(atPath: sourcePath, toPath: payloadDirectory) 
+        //            } catch {
+        //                setStatus("Error processing deb file")
+        //                cleanup(tempFolder); return
+        //            }
         case "ipa":
             //MARK: --Unzip IPA
             do {
@@ -805,20 +802,20 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
                 setStatus("Error extracting ipa file")
                 cleanup(tempFolder); return
             }
-//        case "app", "appex":
-//            //MARK: --Copy app bundle
-//            if !inputIsDirectory.boolValue {
-//                setStatus("Unsupported input file")
-//                cleanup(tempFolder); return
-//            }
-//            do {
-//                try fileManager.createDirectory(atPath: payloadDirectory, withIntermediateDirectories: true, attributes: nil)
-//                setStatus("Copying app to payload directory")
-//                try fileManager.copyItem(atPath: inputFile, toPath: payloadDirectory.stringByAppendingPathComponent(inputFile.lastPathComponent))
-//            } catch {
-//                setStatus("Error copying app to payload directory")
-//                cleanup(tempFolder); return
-//            }
+        //        case "app", "appex":
+        //            //MARK: --Copy app bundle
+        //            if !inputIsDirectory.boolValue {
+        //                setStatus("Unsupported input file")
+        //                cleanup(tempFolder); return
+        //            }
+        //            do {
+        //                try fileManager.createDirectory(atPath: payloadDirectory, withIntermediateDirectories: true, attributes: nil)
+        //                setStatus("Copying app to payload directory")
+        //                try fileManager.copyItem(atPath: inputFile, toPath: payloadDirectory.stringByAppendingPathComponent(inputFile.lastPathComponent))
+        //            } catch {
+        //                setStatus("Error copying app to payload directory")
+        //                cleanup(tempFolder); return
+        //            }
         case "xcarchive":
             //MARK: --Copy app bundle from xcarchive
             if !inputIsDirectory.boolValue {
@@ -1085,12 +1082,7 @@ class MainView: NSView, URLSessionDataDelegate, URLSessionDelegate, URLSessionDo
         
         //MARK: Packaging
         //Check if output already exists and delete if so
-        
-//        print("**&*&*&*&**&*&*&")
-//        print(outputFile)
-//        print(inputFile)
-        
-        let outputFile = inputFile.stringByDeletingLastPathComponent + "/\(appInfo.newShortVersion) (\(appInfo.newVersion)).ipa"
+        let outputFile = inputFile.stringByDeletingLastPathComponent + "/\(appInfo.newShortVersion) (\(appInfo.newVersion)) \(appInfo.store).ipa"
         
         if fileManager.fileExists(atPath: outputFile) {
             do {
