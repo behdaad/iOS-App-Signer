@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A1F001A254778CA00C48649 /* Example.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1A1F0019254778CA00C48649 /* Example.plist */; };
+		1A6480F9259B63F900869B04 /* CodesignManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6480F8259B63F900869B04 /* CodesignManager.swift */; };
 		652408CC1BE743D4006FA4C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652408CB1BE743D4006FA4C6 /* AppDelegate.swift */; };
 		652408CE1BE743D4006FA4C6 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652408CD1BE743D4006FA4C6 /* MainView.swift */; };
 		652408D01BE743D4006FA4C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 652408CF1BE743D4006FA4C6 /* Assets.xcassets */; };
@@ -24,12 +25,12 @@
 		659734A21C65B5F600383D2D /* NSAttributedStringMarkdownParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6597349F1C65B5F600383D2D /* NSAttributedStringMarkdownParser.m */; };
 		659734A71C65B94F00383D2D /* fmemopen.c in Sources */ = {isa = PBXBuildFile; fileRef = 659734A41C65B94F00383D2D /* fmemopen.c */; };
 		65B2EAA21CDE981500D02053 /* iASShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2EAA11CDE981500D02053 /* iASShared.swift */; };
-		65CED3A32D8B6F3E00E9185B /* fix-wwdr.sh in Resources */ = {isa = PBXBuildFile; fileRef = 65CED3A22D8B6F3E00E9185B /* fix-wwdr.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1A1F0019254778CA00C48649 /* Example.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Example.plist; sourceTree = "<group>"; };
-		652408C81BE743D4006FA4C6 /* iOS App Signer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS App Signer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A6480F8259B63F900869B04 /* CodesignManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesignManager.swift; sourceTree = "<group>"; };
+		652408C81BE743D4006FA4C6 /* SNPAppSigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SNPAppSigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		652408CB1BE743D4006FA4C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		652408CD1BE743D4006FA4C6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		652408CF1BE743D4006FA4C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,7 +55,6 @@
 		659734A61C65B94F00383D2D /* NimbusMemoryMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusMemoryMapping.h; path = NimbusKit/memorymapping/NimbusMemoryMapping.h; sourceTree = "<group>"; };
 		65B24E0D1BECB30D005D2068 /* AppSigner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AppSigner.entitlements; sourceTree = "<group>"; };
 		65B2EAA11CDE981500D02053 /* iASShared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iASShared.swift; path = AppSigner/Classes/iASShared.swift; sourceTree = "<group>"; };
-		65CED3A22D8B6F3E00E9185B /* fix-wwdr.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = "fix-wwdr.sh"; path = "Resources/fix-wwdr.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A6480F7259B63E600869B04 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1A6480F8259B63F900869B04 /* CodesignManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		652408BF1BE743D4006FA4C6 = {
 			isa = PBXGroup;
 			children = (
@@ -80,7 +88,7 @@
 		652408C91BE743D4006FA4C6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				652408C81BE743D4006FA4C6 /* iOS App Signer.app */,
+				652408C81BE743D4006FA4C6 /* SNPAppSigner.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,9 +96,9 @@
 		652408CA1BE743D4006FA4C6 /* AppSigner */ = {
 			isa = PBXGroup;
 			children = (
-				65CED3A12D8B6F1B00E9185B /* Resources */,
 				655FFFDF1BEB270200D43AD8 /* Extensions */,
-				655FFFA01BEAD90800D43AD8 /* Classes */,
+				1A6480F7259B63E600869B04 /* Managers */,
+				655FFFA01BEAD90800D43AD8 /* Models */,
 				65311EB51BF88EB800516EFD /* Application.xib */,
 				659734931C65A14300383D2D /* Updates.xib */,
 				659734951C65A1E800383D2D /* UpdatesController.swift */,
@@ -104,7 +112,7 @@
 			path = AppSigner;
 			sourceTree = "<group>";
 		};
-		655FFFA01BEAD90800D43AD8 /* Classes */ = {
+		655FFFA01BEAD90800D43AD8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				655FFFA11BEAD93600D43AD8 /* ProvisioningProfile.swift */,
@@ -112,7 +120,7 @@
 				65311EAD1BF8259000516EFD /* NSMenuLink.swift */,
 				65B2EAA11CDE981500D02053 /* iASShared.swift */,
 			);
-			name = Classes;
+			name = Models;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -159,14 +167,6 @@
 			name = memorymapping;
 			sourceTree = "<group>";
 		};
-		65CED3A12D8B6F1B00E9185B /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				65CED3A22D8B6F3E00E9185B /* fix-wwdr.sh */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -184,7 +184,7 @@
 			);
 			name = "iOS App Signer";
 			productName = AppSigner;
-			productReference = 652408C81BE743D4006FA4C6 /* iOS App Signer.app */;
+			productReference = 652408C81BE743D4006FA4C6 /* SNPAppSigner.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -234,7 +234,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65CED3A32D8B6F3E00E9185B /* fix-wwdr.sh in Resources */,
 				65311EB61BF88EB800516EFD /* Application.xib in Resources */,
 				652408D01BE743D4006FA4C6 /* Assets.xcassets in Resources */,
 				1A1F001A254778CA00C48649 /* Example.plist in Resources */,
@@ -260,6 +259,7 @@
 				65311EAE1BF8259000516EFD /* NSMenuLink.swift in Sources */,
 				655FFF9D1BE9B3E300D43AD8 /* NSTask-execute.swift in Sources */,
 				659734A21C65B5F600383D2D /* NSAttributedStringMarkdownParser.m in Sources */,
+				1A6480F9259B63F900869B04 /* CodesignManager.swift in Sources */,
 				655FFFA21BEAD93600D43AD8 /* ProvisioningProfile.swift in Sources */,
 				65B2EAA21CDE981500D02053 /* iASShared.swift in Sources */,
 			);
@@ -369,7 +369,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MARKETING_VERSION = 1.14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.behdad.iosappsigner;
-				PRODUCT_NAME = "iOS App Signer";
+				PRODUCT_NAME = SNPAppSigner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS App Signer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -393,7 +393,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MARKETING_VERSION = 1.14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.behdad.iosappsigner;
-				PRODUCT_NAME = "iOS App Signer";
+				PRODUCT_NAME = SNPAppSigner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iOS App Signer-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
