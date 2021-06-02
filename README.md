@@ -1,18 +1,43 @@
 # iOS App Signer
-This is an app for OS X that can (re)sign apps and bundle them into ipa files that are ready to be installed on an iOS device.
+This is a helper app to sign iOS IPA files with a new Signing Certificate and Provisioning Profile. 
 
-Supported input types are: ipa, deb, app, xcarchive
+## Improvements over the Original Code
+- Add ability to copy, cut and paste in text fields
+- Bulk signing of IPA files
 
-Usage
-------
-This app requires Xcode to be installed, it has only been successfully tested on OS X 10.11 at this time.
+## Requirements
+- macOS El Capitan or later
+- Xcode 7 or later
 
-You need a provisioning profile and signing certificate, you can get these from Xcode by creating a new project.
+## Usage
+First select an IPA (or URL to an IPA), a Signing Certificate from your Mac’s Keychain and a Provisioning Profile. Then you can sign the IPA using two modes:
 
-You can then open up iOS App Signer and select your input file, signing certificate, provisioning file, and optionally specify a new application ID and/or application display name.
+### Single Mode
+Fill out the fields for Bundle ID, App Display Name, Build Number and Version String, or fill them empty to remain unchanged. Then click Start and your signed IPA file will be soon ready.
 
-<a href="https://paypal.me/DanTheMan827" class="donate"><img src="http://dantheman827.github.io/images/donate-button.svg" height="44" alt="Donate"></a>
+### Bulk Mode
+Select a Config File adhering to the format below:
 
-Thanks To
-------
-[maciekish / iReSign](https://github.com/maciekish/iReSign): The basic process was gleaned from the source code of this project.
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleVersion</key>
+	<string></string>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
+	<key>Stores</key>
+	<dict>
+		<key></key>
+		<string></string>
+	</dict>
+</dict>
+</plist>
+```
+
+This mode will a signed IPA for each key in the `Stores` dictionary. It starts with the `CFBundleVersion` and `CFBundleShortVersionString` as the base and increments them accordingly for each Store. 
+
+## Credits
+[iOS App Signer](https://github.com/DanTheMan827/ios-app-signer)
+[iReSign](https://github.com/maciekish/iReSign)

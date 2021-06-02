@@ -15,7 +15,7 @@
 		65311EAE1BF8259000516EFD /* NSMenuLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65311EAD1BF8259000516EFD /* NSMenuLink.swift */; };
 		65311EB01BF835F100516EFD /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65311EAF1BF835F100516EFD /* Log.swift */; };
 		65311EB61BF88EB800516EFD /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65311EB51BF88EB800516EFD /* Application.xib */; };
-		655FFF9D1BE9B3E300D43AD8 /* NSTask-execute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655FFF9C1BE9B3E300D43AD8 /* NSTask-execute.swift */; };
+		655FFF9D1BE9B3E300D43AD8 /* NSTask+Execute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655FFF9C1BE9B3E300D43AD8 /* NSTask+Execute.swift */; };
 		655FFF9F1BE9BA9D00D43AD8 /* StringByAppendingPathComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655FFF9E1BE9BA9D00D43AD8 /* StringByAppendingPathComponent.swift */; };
 		655FFFA21BEAD93600D43AD8 /* ProvisioningProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655FFFA11BEAD93600D43AD8 /* ProvisioningProfile.swift */; };
 		659734941C65A14300383D2D /* Updates.xib in Resources */ = {isa = PBXBuildFile; fileRef = 659734931C65A14300383D2D /* Updates.xib */; };
@@ -30,6 +30,7 @@
 /* Begin PBXFileReference section */
 		1A1F0019254778CA00C48649 /* Example.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Example.plist; sourceTree = "<group>"; };
 		1A6480F8259B63F900869B04 /* CodesignManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodesignManager.swift; sourceTree = "<group>"; };
+		1A70AD282667A69900544C01 /* iOS App Signer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS App Signer-Bridging-Header.h"; sourceTree = "<group>"; };
 		652408C81BE743D4006FA4C6 /* SNPAppSigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SNPAppSigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		652408CB1BE743D4006FA4C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		652408CD1BE743D4006FA4C6 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -38,23 +39,22 @@
 		65311EAD1BF8259000516EFD /* NSMenuLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMenuLink.swift; sourceTree = "<group>"; };
 		65311EAF1BF835F100516EFD /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		65311EB51BF88EB800516EFD /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
-		655FFF9C1BE9B3E300D43AD8 /* NSTask-execute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTask-execute.swift"; sourceTree = "<group>"; };
+		655FFF9C1BE9B3E300D43AD8 /* NSTask+Execute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTask+Execute.swift"; sourceTree = "<group>"; };
 		655FFF9E1BE9BA9D00D43AD8 /* StringByAppendingPathComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringByAppendingPathComponent.swift; sourceTree = "<group>"; };
 		655FFFA11BEAD93600D43AD8 /* ProvisioningProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProvisioningProfile.swift; sourceTree = "<group>"; };
 		659734931C65A14300383D2D /* Updates.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Updates.xib; sourceTree = "<group>"; };
 		659734951C65A1E800383D2D /* UpdatesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesController.swift; sourceTree = "<group>"; };
-		659734991C65B5F500383D2D /* iOS App Signer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS App Signer-Bridging-Header.h"; sourceTree = "<group>"; };
-		6597349A1C65B5F600383D2D /* MarkdownTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarkdownTokenizer.m; path = NimbusKit/markdown/MarkdownTokenizer.m; sourceTree = "<group>"; };
-		6597349B1C65B5F600383D2D /* MarkdownTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarkdownTokens.h; path = NimbusKit/markdown/MarkdownTokens.h; sourceTree = "<group>"; };
-		6597349C1C65B5F600383D2D /* MarkdownTokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarkdownTokens.m; path = NimbusKit/markdown/MarkdownTokens.m; sourceTree = "<group>"; };
-		6597349D1C65B5F600383D2D /* NimbusMarkdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusMarkdown.h; path = NimbusKit/markdown/NimbusMarkdown.h; sourceTree = "<group>"; };
-		6597349E1C65B5F600383D2D /* NSAttributedStringMarkdownParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSAttributedStringMarkdownParser.h; path = NimbusKit/markdown/NSAttributedStringMarkdownParser.h; sourceTree = "<group>"; };
-		6597349F1C65B5F600383D2D /* NSAttributedStringMarkdownParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSAttributedStringMarkdownParser.m; path = NimbusKit/markdown/NSAttributedStringMarkdownParser.m; sourceTree = "<group>"; };
-		659734A41C65B94F00383D2D /* fmemopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fmemopen.c; path = NimbusKit/memorymapping/fmemopen.c; sourceTree = "<group>"; };
-		659734A51C65B94F00383D2D /* fmemopen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fmemopen.h; path = NimbusKit/memorymapping/fmemopen.h; sourceTree = "<group>"; };
-		659734A61C65B94F00383D2D /* NimbusMemoryMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusMemoryMapping.h; path = NimbusKit/memorymapping/NimbusMemoryMapping.h; sourceTree = "<group>"; };
-		65B24E0D1BECB30D005D2068 /* AppSigner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AppSigner.entitlements; sourceTree = "<group>"; };
-		65B2EAA11CDE981500D02053 /* iASShared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iASShared.swift; path = AppSigner/Classes/iASShared.swift; sourceTree = "<group>"; };
+		6597349A1C65B5F600383D2D /* MarkdownTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkdownTokenizer.m; sourceTree = "<group>"; };
+		6597349B1C65B5F600383D2D /* MarkdownTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkdownTokens.h; sourceTree = "<group>"; };
+		6597349C1C65B5F600383D2D /* MarkdownTokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkdownTokens.m; sourceTree = "<group>"; };
+		6597349D1C65B5F600383D2D /* NimbusMarkdown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusMarkdown.h; sourceTree = "<group>"; };
+		6597349E1C65B5F600383D2D /* NSAttributedStringMarkdownParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAttributedStringMarkdownParser.h; sourceTree = "<group>"; };
+		6597349F1C65B5F600383D2D /* NSAttributedStringMarkdownParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringMarkdownParser.m; sourceTree = "<group>"; };
+		659734A41C65B94F00383D2D /* fmemopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fmemopen.c; sourceTree = "<group>"; };
+		659734A51C65B94F00383D2D /* fmemopen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmemopen.h; sourceTree = "<group>"; };
+		659734A61C65B94F00383D2D /* NimbusMemoryMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NimbusMemoryMapping.h; sourceTree = "<group>"; };
+		65B24E0D1BECB30D005D2068 /* AppSigner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppSigner.entitlements; sourceTree = "<group>"; };
+		65B2EAA11CDE981500D02053 /* iASShared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iASShared.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +74,36 @@
 				1A6480F8259B63F900869B04 /* CodesignManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		1A70AD272667A65600544C01 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				1A70AD282667A69900544C01 /* iOS App Signer-Bridging-Header.h */,
+				65B24E0D1BECB30D005D2068 /* AppSigner.entitlements */,
+				1A1F0019254778CA00C48649 /* Example.plist */,
+				652408D41BE743D4006FA4C6 /* Info.plist */,
+				652408CB1BE743D4006FA4C6 /* AppDelegate.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		1A70AD292667A72800544C01 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				65311EB51BF88EB800516EFD /* Application.xib */,
+				659734931C65A14300383D2D /* Updates.xib */,
+				659734951C65A1E800383D2D /* UpdatesController.swift */,
+				652408CD1BE743D4006FA4C6 /* MainView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1A70AD2A2667A74A00544C01 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Icons;
 			sourceTree = "<group>";
 		};
 		652408BF1BE743D4006FA4C6 = {
@@ -96,18 +126,13 @@
 		652408CA1BE743D4006FA4C6 /* AppSigner */ = {
 			isa = PBXGroup;
 			children = (
+				1A70AD2A2667A74A00544C01 /* Icons */,
+				1A70AD292667A72800544C01 /* Views */,
+				1A70AD272667A65600544C01 /* SupportingFiles */,
 				655FFFDF1BEB270200D43AD8 /* Extensions */,
 				1A6480F7259B63E600869B04 /* Managers */,
 				655FFFA01BEAD90800D43AD8 /* Models */,
-				65311EB51BF88EB800516EFD /* Application.xib */,
-				659734931C65A14300383D2D /* Updates.xib */,
-				659734951C65A1E800383D2D /* UpdatesController.swift */,
-				65B24E0D1BECB30D005D2068 /* AppSigner.entitlements */,
-				652408CB1BE743D4006FA4C6 /* AppDelegate.swift */,
-				652408CD1BE743D4006FA4C6 /* MainView.swift */,
-				1A1F0019254778CA00C48649 /* Example.plist */,
 				652408CF1BE743D4006FA4C6 /* Assets.xcassets */,
-				652408D41BE743D4006FA4C6 /* Info.plist */,
 			);
 			path = AppSigner;
 			sourceTree = "<group>";
@@ -120,18 +145,16 @@
 				65311EAD1BF8259000516EFD /* NSMenuLink.swift */,
 				65B2EAA11CDE981500D02053 /* iASShared.swift */,
 			);
-			name = Models;
-			path = ..;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		655FFFDF1BEB270200D43AD8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				655FFF9C1BE9B3E300D43AD8 /* NSTask-execute.swift */,
+				655FFF9C1BE9B3E300D43AD8 /* NSTask+Execute.swift */,
 				655FFF9E1BE9BA9D00D43AD8 /* StringByAppendingPathComponent.swift */,
 			);
-			name = Extensions;
-			path = ..;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		659734971C65B5B900383D2D /* NimbusKit */ = {
@@ -140,7 +163,7 @@
 				659734A31C65B93E00383D2D /* memorymapping */,
 				659734981C65B5C200383D2D /* markdown */,
 			);
-			name = NimbusKit;
+			path = NimbusKit;
 			sourceTree = "<group>";
 		};
 		659734981C65B5C200383D2D /* markdown */ = {
@@ -152,9 +175,8 @@
 				6597349D1C65B5F600383D2D /* NimbusMarkdown.h */,
 				6597349E1C65B5F600383D2D /* NSAttributedStringMarkdownParser.h */,
 				6597349F1C65B5F600383D2D /* NSAttributedStringMarkdownParser.m */,
-				659734991C65B5F500383D2D /* iOS App Signer-Bridging-Header.h */,
 			);
-			name = markdown;
+			path = markdown;
 			sourceTree = "<group>";
 		};
 		659734A31C65B93E00383D2D /* memorymapping */ = {
@@ -164,7 +186,7 @@
 				659734A51C65B94F00383D2D /* fmemopen.h */,
 				659734A61C65B94F00383D2D /* NimbusMemoryMapping.h */,
 			);
-			name = memorymapping;
+			path = memorymapping;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,7 +216,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Daniel Radtke";
 				TargetAttributes = {
 					652408C71BE743D4006FA4C6 = {
@@ -212,10 +234,9 @@
 			};
 			buildConfigurationList = 652408C31BE743D4006FA4C6 /* Build configuration list for PBXProject "iOS App Signer" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -257,7 +278,7 @@
 				652408CC1BE743D4006FA4C6 /* AppDelegate.swift in Sources */,
 				659734961C65A1E800383D2D /* UpdatesController.swift in Sources */,
 				65311EAE1BF8259000516EFD /* NSMenuLink.swift in Sources */,
-				655FFF9D1BE9B3E300D43AD8 /* NSTask-execute.swift in Sources */,
+				655FFF9D1BE9B3E300D43AD8 /* NSTask+Execute.swift in Sources */,
 				659734A21C65B5F600383D2D /* NSAttributedStringMarkdownParser.m in Sources */,
 				1A6480F9259B63F900869B04 /* CodesignManager.swift in Sources */,
 				655FFFA21BEAD93600D43AD8 /* ProvisioningProfile.swift in Sources */,
@@ -272,18 +293,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -318,18 +349,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -364,14 +405,14 @@
 				CURRENT_PROJECT_VERSION = 114;
 				DEVELOPMENT_TEAM = 39RH654AZW;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = AppSigner/Info.plist;
+				INFOPLIST_FILE = AppSigner/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MARKETING_VERSION = 1.14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.behdad.iosappsigner;
 				PRODUCT_NAME = SNPAppSigner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "iOS App Signer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppSigner/SupportingFiles/iOS App Signer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -388,14 +429,14 @@
 				CURRENT_PROJECT_VERSION = 114;
 				DEVELOPMENT_TEAM = 39RH654AZW;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = AppSigner/Info.plist;
+				INFOPLIST_FILE = AppSigner/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MARKETING_VERSION = 1.14.0;
 				PRODUCT_BUNDLE_IDENTIFIER = me.behdad.iosappsigner;
 				PRODUCT_NAME = SNPAppSigner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "iOS App Signer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppSigner/SupportingFiles/iOS App Signer-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
