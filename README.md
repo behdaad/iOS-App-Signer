@@ -38,6 +38,9 @@ Select a Config File adhering to the format below:
 
 This mode will a signed IPA for each key in the `Stores` dictionary. It starts with the `CFBundleVersion` and `CFBundleShortVersionString` as the base and increments them accordingly for each Store. 
 
+## Contributions
+You can start by checking out the [issues](https://github.com/behdaad/iOS-App-Signer/issues) page.
+
 ## Credits
-[iOS App Signer](https://github.com/DanTheMan827/ios-app-signer)
-[iReSign](https://github.com/maciekish/iReSign)
+- [iOS App Signer](https://github.com/DanTheMan827/ios-app-signer)
+- [iReSign](https://github.com/maciekish/iReSign)
